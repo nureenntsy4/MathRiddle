@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/5BPv6XR/score.gif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            font-size: 20px;
+            background-color: #48D1CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .container {
+            position: fixed;
+            center-left: 500px;
+            left: 200px;
+            top: 230px;
+            font-size: 30px;
+            font-family: Monaco;
+            color: MidnightBlue;
+        }
+        
+        .play-btn {
+            position: fixed;
+            font-size: 30px;
+            center-left: 500px;
+            left: 270px;
+            top: 340px;
+            background-color: #48D1CC;
+            color: white;
+            font-family: Monaco;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+    </style>
+    <script>
+		
+			document.addEventListener('DOMContentLoaded', function() {
+            const score = localStorage.getItem('score') || '0';
+            document.getElementById('score').innerText = `4/5`;
+        });
+		
+    </script>
+</head>
+<body>
+    <a class="home-btn" href="home.html">🏠</a>
+    <a class="play-btn" href="level.html">Play Again</a>
+    <div class="container">
+        <h1>Score : <span id="score">0</span></h1>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Game - Question 2</title>
+</head>
+<body>
+  <h1>Question 2</h1>
+  <p>What is 3 + 3?</p>
+  <button onclick="checkAnswer(6)">6</button>
+  <button onclick="checkAnswer(5)">5</button>
+  
+  <button id="nextButton" onclick="goToNextPage()" style="display:none;">Next</button>
+
+  <script>
+    function checkAnswer(selectedAnswer) {
+      // Only process if no answer has been selected yet
+      if (localStorage.getItem('answered_question_2') === null) {
+        if (selectedAnswer === 6) {
+          incrementScore();
+        }
+        localStorage.setItem('answered_question_2', 'true');
+      }
+    }
+
+    function incrementScore() {
+      let score = parseInt(localStorage.getItem('score'));
+      score += 1; // Increment score by 1
+      localStorage.setItem('score', score);
+      alert("Correct!");
+    }
+	
+	function goToNextPage() {
+      window.location.href = "score.html"; // Change this to the actual next page
+    }
+	
+  </script>
+</body>
+</html>
+
+
+
+

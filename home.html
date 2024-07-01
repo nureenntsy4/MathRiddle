@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Cloud animation styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: LavenderBlush;
+  overflow: hidden; /* To hide the horizontal scroller appearing during the animation */
+}
+
+#clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 100px 0;
+  background: LavenderBlush; /* Match the background color */
+  background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+  background: linear-gradient(top, #c9dbe9 0%, #fff 100%);
+  background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+}
+
+.cloud {
+  width: 200px;
+  height: 60px;
+  background: #fff;
+  border-radius: 200px;
+  position: relative;
+}
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 100px;
+  height: 80px;
+  top: -15px;
+  left: 10px;
+  border-radius: 100px;
+  transform: rotate(30deg);
+}
+
+.cloud:after {
+  width: 120px;
+  height: 120px;
+  top: -55px;
+  right: 15px;
+}
+
+.x1 {
+  animation: moveclouds 15s linear infinite;
+}
+
+.x2 {
+  left: 200px;
+  top: -80px;
+  transform: scale(0.6);
+  opacity: 0.6;
+  animation: moveclouds 25s linear infinite;
+}
+
+.x3 {
+  left: -250px;
+  top: 80px;
+  transform: scale(0.8);
+  opacity: 0.8;
+  animation: moveclouds 20s linear infinite;
+}
+
+.x4 {
+  left: 470px;
+  top: -250px;
+  transform: scale(0.75);
+  opacity: 0.75;
+  animation: moveclouds 18s linear infinite;
+}
+
+.x5 {
+  left: -150px;
+  top: 80px;
+  transform: scale(0.8);
+  opacity: 0.8;
+  animation: moveclouds 16s linear infinite;
+}
+
+.x6 {
+  left: 200px;
+  top: 100px;
+  transform: scale(0.6);
+  opacity: 0.7;
+  animation: moveclouds 18s linear infinite;
+}
+
+@keyframes moveclouds {
+  0% { margin-left: 1000px; }
+  100% { margin-left: -1000px; }
+}
+
+/* Box styles */
+.box {
+  background-color: black;
+  padding: 20px;
+  text-align: center;
+  font-size: 35px;
+  width: 580px; /* Adjusted width as per your requirement */
+  border-radius: 20px; /* Adjusted border radius */
+  margin: 55px auto; /* Centering the box horizontally */
+  font-family: "Noto Serif", serif; /* Setting font family */
+  font-weight: normal;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 0 10px rgba(255, 192, 203, 0.8);
+  position: absolute;
+  top: 32%; /* Adjust as needed */
+  left: 50%; /* Adjust as needed */
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  z-index: 2; /* Ensure box is on top of clouds */
+}
+
+.boxname {
+  display: none;
+  background: linear-gradient(to bottom, #ADD8E6, #87CEEB, #00BFFF); /* Gradient from light to dark blue */
+  padding: 15px;
+  outline: 2px solid black;
+  text-align: center;
+  font-size: 38px;
+  width: 600px; /* Adjusted width as per your requirement */
+  border-radius: 20px; /* Adjusted border radius */
+  margin: 50px auto; /* Centering the box horizontally */
+  font-family: "Noto Serif", serif; /* Setting font family */
+  font-weight: normal;
+  color: white; /* Text color */
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 0 10px rgba(255, 192, 203, 0.8);
+  position: absolute;
+  top: 32%; /* Adjust as needed */
+  left: 50%; /* Adjust as needed */
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  z-index: 3; /* Ensure box is on top of other elements */
+}
+
+.input-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.input-container input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: "Noto Serif", serif; /* Setting font family */
+  color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.input-container input[type="text"]::placeholder {
+  color: #999; /* Placeholder text color */
+  font-style: italic; /* Placeholder italic */
+  font-size: 16px; /* Placeholder font size */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  position: absolute;
+  bottom: 160px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Ensure button is on top of clouds */
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(to right, floralwhite 50%, PaleVioletRed 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 25px;
+  outline: none;
+  text-decoration: none;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.button:hover::before {
+  opacity: 0;
+}
+
+.button p {
+  text-decoration: none;
+  color: inherit; /* Inherits parent's color by default */
+  display: block;
+  transition: color 0.3s; /* Add transition for smooth color change */
+}
+
+.button:hover {
+  background-position: left;
+  color: #fff; /* Change text color on button hover */
+  outline: 2px solid PaleVioletRed;
+}
+
+.button:hover p {
+  color: PaleVioletRed; /* Change text color of <a> on button hover */
+}
+
+.button-80 {
+  background: #fff;
+  backface-visibility: hidden;
+  border-radius: .375rem;
+  border-style: solid;
+  border-width: .125rem;
+  box-sizing: border-box;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular, Helvetica, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  padding: .875rem 1.125rem;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transform: translateZ(0) scale(1);
+  transition: transform .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-80:not(:disabled):hover {
+  transform: scale(1.05);
+  color: LightBlue; /* Change font color to blue on hover */
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Black outline */
+}
+
+.button-80:not(:disabled):hover:active {
+  transform: scale(1.05) translateY(.125rem);
+}
+
+.button-80:focus {
+  outline: 0 solid transparent;
+}
+
+.button-80:focus:before {
+  content: "";
+  left: calc(-1*.375rem);
+  pointer-events: none;
+  position: absolute;
+  top: calc(-1*.375rem);
+  transition: border-radius;
+  user-select: none;
+}
+
+.button-80:focus:not(:focus-visible) {
+  outline: 0 solid transparent;
+}
+
+.button-80:focus:not(:focus-visible):before {
+  border-width: 0;
+}
+
+.button-80:not(:disabled):active {
+  transform: translateY(.125rem);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 10000; /* Ensure the popup is on top */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+</style>
+<script>
+
+function redirectToTitle() {
+  window.location.href = 'home.html';
+}
+
+function startGame(event) {
+  var username = document.getElementById('username').value.trim();
+  if (username === '') {
+    event.preventDefault(); // Prevent the default action (following the link)
+    var popup = document.getElementById('popup');
+    popup.style.display = 'block'; // Display the popup
+  } else {
+    localStorage.setItem('username', username); // Save username to localStorage
+  }
+}
+
+
+window.onload = function() {
+  var audio = new Audio('song.mp3');
+  audio.loop = true; // Loop the audio
+  audio.play(); // Start playing the audio
+
+  var startButton = document.querySelector('.button');
+  var boxname = document.querySelector('.boxname');
+
+  startButton.addEventListener('click', function() {
+    boxname.style.display = 'block'; // Show the boxname
+    audio.play(); // Ensure the audio keeps playing
+  });
+
+  document.getElementById('popup-close').addEventListener('click', function() {
+    var popup = document.getElementById('popup');
+    popup.style.display = 'none'; // Hide the popup when OK is clicked
+  });
+};
+</script>
+</head>
+<body>
+<div id="clouds">
+  <div class="cloud x1"></div>
+  <div class="cloud x2"></div>
+  <div class="cloud x3"></div>
+  <div class="cloud x4"></div>
+  <div class="cloud x5"></div>
+  <div class="cloud x6"></div>
+</div>
+
+<div class="box">
+  <h1 style="color: deeppink;">MATH RIDDLE</h1>
+</div>
+
+<div class="boxname">
+  <button class="close-button" onclick="redirectToTitle()">X</button>
+  <h1 style="color: deepskyblue;">Enter Your Name</h1>
+  <div class="input-container">
+    <input type="text" id="username" placeholder="Your Name">
+  </div>
+  <a href="level.html" class="button-80" onclick="startGame(event)">Start Game</a>
+</div>
+
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <p>Please enter your name!</p>
+    <button id="popup-close" class="button-80">OK</button>
+  </div>
+</div>
+
+<div class="button-container">
+  <div class="button">
+    <p style="font-size: 21px;">ENTER NAME</p>
+  </div>
+</div>
+
+</body>
+</html>

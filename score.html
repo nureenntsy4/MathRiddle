@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Game - Score</title>
+</head>
+<body>
+  <h1>Your Score: <span id="score"></span></h1>
+  <script>
+    document.getElementById('score').innerText = localStorage.getItem('score');
+    // Clear localStorage after displaying score
+    localStorage.removeItem('score');
+    localStorage.removeItem('answered_question_1');
+    localStorage.removeItem('answered_question_2');
+  </script>
+</body>
+</html>
+
+
+
+

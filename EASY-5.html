@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Easy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bubble {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        body {
+            background-image: url('https://i.ibb.co/825rGks/night.gif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+			font-size: 25px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+			color: #FFFAFA;
+			font-size: 22px;
+        }
+
+        .answers {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+			font-size: 35px;
+			color: #8A2BE2;
+        }
+
+        .answer {
+            padding: 20px;
+            background-color: #9370DB;
+            color: white;
+            border-radius: 5px;
+			font-size: 24px;
+            cursor: pointer;
+        }
+
+        .drop-zone-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+			
+        }
+
+        .drop-zone {
+            width: 70px;
+            height: 66px;
+            padding: 20px;
+			space-around: 10px;
+            border: 9px dashed #FFFAFA;
+			border: 20px;
+            background-color: #D8BFD8;
+        }
+
+        .timer {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            text-align: center;
+            font-size: 23px;
+            background-color: #483D8B;
+            color: white;
+            padding: 10px 0;
+        }
+
+        #reset-btn, #next-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            border: none;
+            outline: none;
+			font-size: 20px;
+        }
+
+        #reset-btn {
+            background-color: #f44336;
+        }
+
+        #next-btn {
+            background-color: #483D8B;
+        }
+
+        .question-animation {
+            animation: slideIn 1s ease-out, bubble 1.5s infinite;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #483D8B;
+            color: white;
+            border-radius: 10px;
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+       #sound-btn {
+            position: fixed;
+            top: 10px;
+            right: 85px;
+            font-size: 20px;
+            background-color: #483D8B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+	   
+	   .x-btn {
+			position: fixed;
+            top: 10px; /* Adjust as needed */
+           right: 10px; /* Adjust as needed */
+            font-size: 20px;
+            background-color: #483D8B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+			color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .home-btn {
+            position: fixed;
+            top: 10px; /* Adjust as needed */
+            left: 10px; /* Adjust as needed */
+            font-size: 20px;
+            background-color: #483D8B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+			color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+	   
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+			padding: 30px;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+			font-size: 30px;
+			font-family: Times-New-Roman;
+			opacity: 1;
+			width: 200px;
+			height: 250px;
+        }
+
+        .popup-content {
+            text-align: center;
+        }
+
+        .popup h2 {
+            margin-bottom: 40px;
+			color: black;
+			font-family: Monaco;
+        }
+
+        .popup .button {
+            background-color: #9370DB;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+			font-size: 20px;
+        }
+
+        .popup .button:hover {
+            background-color: #483D8B;
+        }
+		
+		.popup-content {
+		text-align: center;	
+		}
+
+		.correct-logo {
+			width: 150px;
+			height: auto;
+			margin-bottom: 0px;
+		}	
+    </style>
+</head>
+<body onload="startQuiz()">
+    <div class="container">
+        <button id="sound-btn" onclick="toggleSound()">🔊</button>
+		<a class="x-btn" href="level.html">❌</a>
+        <a class="home-btn" href="home.html">🏠</a>
+		
+        <audio id="background-audio" loop>
+            <source src="C:\xampp\htdocs\dashboard\MathRiddle\Super Mario Bros. Theme Song.mp3" type="audio/mpeg">
+        </audio>
+        <div class="question-animation" id="animated-question">Fifth Question</div>
+        <div class="question-box">
+            <h2 id="question">Calculate the value of (3 + 5) x 2 - 4</h2>
+        </div>
+        <div class="answers">
+            <div class="answer" draggable="true" id="answer1">12</div>
+			<div class="answer" draggable="true" id="answer2">6</div>
+            <div class="answer" draggable="true" id="answer3">-12</div>
+        </div>
+        <div class="drop-zone-container">
+            <div class="drop-zone" id="drop-zone-1"></div>
+        </div>
+		
+         <a id="next-btn" href="SCORE-1.html" style="pointer-events: none; opacity: 0.5;">Next</a>
+		
+		
+        <button id="reset-btn" onclick="resetGame()">Reset</button>
+    </div>
+    <div class="timer" id="timer">Time left: <span id="time">30</span> seconds</div>
+	
+	<div class="popup" id="popup">
+		<div class="popup-content">
+			<img src="https://i.ibb.co/b7ZgGjD/tick2.jpg" alt="Correct" class="correct-logo"> 
+			<h2>Correct!</h2>
+			<button class="button" onclick="closePopup()">Okay</button>
+		</div>
+</div>
+
+    </div>
+	
+   <script>
+        let timeLeft = 30;
+        const timerElement = document.getElementById('time');
+        const dropZones = document.querySelectorAll('.drop-zone');
+        const answers = document.querySelectorAll('.answer');
+        const backgroundAudio = document.getElementById('background-audio');
+        const soundBtn = document.getElementById('sound-btn');
+        let soundOn = false;
+
+        answers.forEach(answer => {
+            answer.addEventListener('dragstart', dragStart);
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', dragOver);
+            zone.addEventListener('drop', drop);
+        });
+
+        function dragStart(event) {
+            event.dataTransfer.setData('text', event.target.id);
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const answerId = event.dataTransfer.getData('text');
+            const answerElement = document.getElementById(answerId);
+            if (!event.target.hasChildNodes()) {
+                event.target.appendChild(answerElement);
+            }
+
+            checkAnswer();
+        }
+
+       function checkAnswer() {
+    const correctOrder = ['answer1'];
+    const userOrder = Array.from(document.querySelectorAll('.drop-zone')).map(zone => zone.firstChild ? zone.firstChild.id : null);
+
+    if (JSON.stringify(correctOrder) === JSON.stringify(userOrder)) {
+        let score = parseInt(localStorage.getItem('score')) || 0;
+        localStorage.setItem('score', score + 1);
+        openPopup();
+        clearInterval(timerInterval);
+        document.getElementById('next-btn').style.pointerEvents = 'auto';
+        document.getElementById('next-btn').style.opacity = '1';
+    } else if (userOrder.every(id => id !== null)) {
+        alert('Wrong answer');
+        document.getElementById('next-btn').style.pointerEvents = 'auto';
+        document.getElementById('next-btn').style.opacity = '1';
+    }
+}
+
+function nextQuestion() {
+    window.location.href = 'SCORE-1.html'; // Redirect to the next question
+} 
+
+function startQuiz() {
+    localStorage.setItem('score', '0'); // Initialize score to 0
+}
+        const timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                alert('Time is up!');
+            } else {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+            }
+        }, 1000);
+
+        function resetGame() {
+            // Reset the timer
+            timeLeft = 30;
+            timerElement.textContent = timeLeft;
+            clearInterval(timerInterval);
+            setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert('Time is up!');
+                } else {
+                    timeLeft--;
+                    timerElement.textContent = timeLeft;
+                }
+            }, 1000);
+
+            // Move answers back to the original position
+            const answersContainer = document.querySelector('.answers');
+            answers.forEach(answer => {
+                answersContainer.appendChild(answer);
+            });
+
+            // Clear drop zones
+            dropZones.forEach(zone => {
+                if (zone.firstChild) {
+                    zone.removeChild(zone.firstChild);
+                }
+            });
+			
+            // Disable the Next button again
+            document.getElementById('next-btn').style.pointerEvents = 'none';
+            document.getElementById('next-btn').style.opacity = '0.5';
+        }
+
+        function toggleSound() {
+            soundOn = !soundOn;
+            if (soundOn) {
+                backgroundAudio.play();
+                soundBtn.textContent = '🔇';
+            } else {
+                backgroundAudio.pause();
+                soundBtn.textContent = '🔊';
+            }
+        }
+		
+		function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+		
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
